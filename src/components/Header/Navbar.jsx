@@ -1,10 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogout } = useContext(AuthContext);
   console.log(user);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    userLogout().then(toast.success("Logged Out"));
+  };
 
   const [theme, setTheme] = useState(localStorage.getItem("Theme") || "light");
   // console.log(theme);
@@ -15,12 +21,6 @@ const Navbar = () => {
       setTheme("light");
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("Theme", theme);
-    const localTheme = localStorage.getItem("Theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
 
   const navLinks = (
     <>
@@ -38,8 +38,57 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const withUser = (
+    <div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <details>
+              <summary>
+                <img
+                  className="w-10 md:w-12 rounded-full"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </summary>
+              <ul className="p-2 bg-base-100 rounded-t-none">
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="font-bold text-red-600"
+                  >
+                    LogOut
+                  </button>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+
+  const withoutUser = (
+    <>
+      <Link to={"/login"} className="btn">
+        Log In
+      </Link>
+      <Link to={"/register"} className="btn">
+        Register
+      </Link>
+    </>
+  );
+
+  useEffect(() => {
+    localStorage.setItem("Theme", theme);
+    const localTheme = localStorage.getItem("Theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
   return (
     <div>
+      <Toaster></Toaster>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -98,12 +147,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <Link to={"/login"} className="btn">
-            Log In
-          </Link>
-          <Link to={"/register"} className="btn">
-            Register
-          </Link>
+          {user ? withUser : withoutUser}
         </div>
       </div>
     </div>

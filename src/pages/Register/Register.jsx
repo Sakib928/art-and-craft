@@ -4,7 +4,9 @@ import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, profileUpdate } = useContext(AuthContext);
+  const { createUser, profileUpdate, reload, setReload } =
+    useContext(AuthContext);
+  console.log(reload);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -23,6 +25,9 @@ const Register = () => {
           console.log(res.user);
           toast.success("Successfully registerd");
           profileUpdate(name, photourl);
+          setTimeout(() => {
+            setReload(!reload);
+          }, 2000);
         })
         .catch((err) => {
           console.log(err.message);
