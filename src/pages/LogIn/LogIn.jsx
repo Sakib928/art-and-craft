@@ -1,13 +1,56 @@
+import { useContext } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 const LogIn = () => {
+  const { userLogin, googleLogin, githubLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
+    userLogin(email, password)
+      .then(() => {
+        // console.log(res.user);
+        toast.success("Login Successful");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Login Successful");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Login Successful");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
   return (
     <div>
+      <Toaster></Toaster>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col ">
           <h1 className="font-bold text-4xl">Login Now</h1>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -36,10 +79,16 @@ const LogIn = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
               <div className="mt-4 flex">
-                <p className="flex place-items-center gap-3 btn btn-ghost">
+                <p
+                  onClick={handleGoogleLogin}
+                  className="flex place-items-center gap-3 btn btn-ghost"
+                >
                   <FaGoogle></FaGoogle>Google
                 </p>
-                <p className="flex place-items-center gap-3 btn btn-ghost">
+                <p
+                  onClick={handleGithubLogin}
+                  className="flex place-items-center gap-3 btn btn-ghost"
+                >
                   <FaGithub></FaGithub>Github
                 </p>
               </div>

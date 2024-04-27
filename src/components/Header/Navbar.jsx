@@ -4,8 +4,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, userLogout } = useContext(AuthContext);
-  console.log(user);
+  const { user, userLogout, loading } = useContext(AuthContext);
+  // console.log(user);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -150,7 +150,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          {user ? withUserNav : withoutUserNav}
+          {!loading && user ? withUserNav : withoutUserNav}
         </div>
       </div>
     </div>
