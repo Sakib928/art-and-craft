@@ -7,6 +7,9 @@ import Home from "./pages/Home/Home";
 import AllCrafts from "./pages/AllCrafts/AllCrafts";
 import AddCraft from "./pages/AddCraft/AddCraft";
 import MyCrafts from "./pages/MyCrafts/MyCrafts";
+import AuthProvider from "./provider/AuthProvider";
+import LogIn from "./pages/LogIn/LogIn";
+import Register from "./pages/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +32,22 @@ const router = createBrowserRouter([
         path: "/my-crafts",
         element: <MyCrafts></MyCrafts>,
       },
+      {
+        path: "/login",
+        element: <LogIn></LogIn>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
