@@ -39,7 +39,7 @@ const Navbar = () => {
     </>
   );
 
-  const withUser = (
+  const withUserNav = (
     <div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
@@ -69,7 +69,7 @@ const Navbar = () => {
     </div>
   );
 
-  const withoutUser = (
+  const withoutUserNav = (
     <>
       <Link to={"/login"} className="btn">
         Log In
@@ -124,10 +124,13 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2 place-items-center">
           <div className="mt-2">
-            <label onChange={handleTheme} className="swap swap-rotate">
+            <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input type="checkbox" />
-
+              <input
+                type="checkbox"
+                onChange={handleTheme}
+                checked={theme === "light" ? false : true}
+              />
               {/* sun icon */}
               <svg
                 className="swap-on fill-current w-8 h-8"
@@ -147,7 +150,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          {user ? withUser : withoutUser}
+          {user ? withUserNav : withoutUserNav}
         </div>
       </div>
     </div>
