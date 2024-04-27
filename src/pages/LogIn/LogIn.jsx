@@ -94,7 +94,7 @@ const LogIn = () => {
               </div>
             </form>
             <p className="p-4 -mt-10">
-              New Here ? Register{" "}
+              New to this site ? Register{" "}
               <Link className="text-blue-600 underline" to="/register">
                 here
               </Link>

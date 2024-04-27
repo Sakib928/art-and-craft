@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const { user, userLogout, loading } = useContext(AuthContext);
+  const { user, userLogout, loading, theme, setTheme } =
+    useContext(AuthContext);
   // console.log(user);
 
   const handleLogout = (e) => {
@@ -12,7 +14,7 @@ const Navbar = () => {
     userLogout().then(toast.success("Logged Out"));
   };
 
-  const [theme, setTheme] = useState(localStorage.getItem("Theme") || "light");
+  // const [theme, setTheme] = useState(localStorage.getItem("Theme") || "light");
   // console.log(theme);
   const handleTheme = (e) => {
     if (e.target.checked) {
@@ -30,39 +32,43 @@ const Navbar = () => {
       <li>
         <NavLink to={"/all-crafts"}>All Art & craft Items</NavLink>
       </li>
-      <li>
-        <NavLink to={"/add-craft"}>Add Craft Item</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/my-crafts"}>My Art&Craft List</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to={"/add-craft"}>Add Craft Item</NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <NavLink to={"/my-crafts"}>My Art&Craft List</NavLink>
+        </li>
+      )}
     </>
   );
 
   const withUserNav = (
     <div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              data-tooltip-id="my-tooltip-1"
+              alt="Tailwind CSS Navbar component"
+              src={user?.photoURL}
+            />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        >
           <li>
-            <details>
-              <summary>
-                <img
-                  className="w-10 md:w-12 rounded-full"
-                  src={user?.photoURL}
-                  alt=""
-                />
-              </summary>
-              <ul className="p-2 bg-base-100 rounded-t-none">
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="font-bold text-red-600"
-                  >
-                    LogOut
-                  </button>
-                </li>
-              </ul>
-            </details>
+            <a onClick={handleLogout} className="font-bold text-red-600">
+              Logout
+            </a>
           </li>
         </ul>
       </div>
@@ -89,7 +95,12 @@ const Navbar = () => {
   return (
     <div>
       <Toaster></Toaster>
-      <div className="navbar bg-base-100">
+      <ReactTooltip
+        id="my-tooltip-1"
+        place="bottom"
+        content={user?.displayName}
+      />
+      <div className="navbar bg-base-100 font-semibold">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -115,7 +126,7 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link to={"/"} className="text-xl">
+          <Link to={"/"} className="text-3xl font-extrabold">
             Scribble
           </Link>
         </div>

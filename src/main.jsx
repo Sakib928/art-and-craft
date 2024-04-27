@@ -10,6 +10,7 @@ import MyCrafts from "./pages/MyCrafts/MyCrafts";
 import AuthProvider from "./provider/AuthProvider";
 import LogIn from "./pages/LogIn/LogIn";
 import Register from "./pages/Register/Register";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-craft",
-        element: <AddCraft></AddCraft>,
+        element: (
+          <PrivateRoute>
+            <AddCraft></AddCraft>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-crafts",
-        element: <MyCrafts></MyCrafts>,
+        element: (
+          <PrivateRoute>
+            <MyCrafts></MyCrafts>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

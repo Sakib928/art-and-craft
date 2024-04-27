@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("Theme") || "light");
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -70,6 +71,8 @@ const AuthProvider = ({ children }) => {
     profileUpdate,
     reload,
     setReload,
+    theme,
+    setTheme,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
