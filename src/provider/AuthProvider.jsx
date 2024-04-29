@@ -62,9 +62,7 @@ const AuthProvider = ({ children }) => {
 
   const [loadedItems, setLoadedItems] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://10-painting-server-cqke7xrcz-sakib928s-projects.vercel.app/allcrafts"
-    )
+    fetch("http://localhost:5000/allcrafts")
       .then((res) => res.json())
       .then((data) => setLoadedItems(data));
   }, []);
