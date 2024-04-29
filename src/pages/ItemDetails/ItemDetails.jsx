@@ -15,7 +15,23 @@ const ItemDetails = () => {
   } = item;
   return (
     <div>
-      <h1>item details</h1>
+      <div className="card lg:card-side bg-base-100 shadow-xl rounded-none">
+        <figure>
+          <img src={photoURL} alt="Album" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{itemName}</h2>
+          <p className="font-bold">{subCategory}</p>
+          <p className="max-w-sm">{shortDescription}</p>
+          <div>
+            <p>Price : {price}</p>
+            <p>Rating : {rating}</p>
+            <p>Processing Time : {processingTime}</p>
+            <p>Customization : {customization}</p>
+            <p>Current Stock : {currentStock}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
