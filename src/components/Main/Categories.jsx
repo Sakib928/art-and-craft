@@ -4,9 +4,14 @@ import cat3 from "../../assets/images/animal.jpg";
 import cat4 from "../../assets/images/oil_portrai.jpg";
 import cat5 from "../../assets/images/charcoal-fig.jpg";
 import cat6 from "../../assets/images/superhero.jpg";
+import { useNavigate } from "react-router-dom";
 const Categories = () => {
+  const navigate = useNavigate();
   const handleCategory = (e) => {
-    console.log(e.target.innerText);
+    let address = e.target.innerText;
+    address = address.replace(" ", "_");
+    console.log(address);
+    navigate(`/crafts/${address}`);
   };
   return (
     <div>

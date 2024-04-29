@@ -1,5 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 const ItemCard = ({ item }) => {
-  const { photoURL, itemName, currentStock, price, rating } = item;
+  const { _id, photoURL, itemName, currentStock, price, rating } = item;
+  const navigate = useNavigate();
+  const handleViewDetails = (id) => {
+    navigate(`/details/${id}`);
+  };
+
   return (
     <div>
       <div className="lg:hover:scale-105 transition-all duration-500 card w-96 bg-base-100 shadow-xl mx-auto rounded-none h-full">
@@ -16,7 +23,12 @@ const ItemCard = ({ item }) => {
             <div className="badge badge-outline">{currentStock}</div>
           </div>
           <div className="card-actions my-auto ">
-            <button className="btn btn-primary">View Details</button>
+            <button
+              onClick={() => handleViewDetails(_id)}
+              className="btn btn-primary"
+            >
+              View Details
+            </button>
           </div>
         </div>
       </div>
