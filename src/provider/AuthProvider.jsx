@@ -60,6 +60,13 @@ const AuthProvider = ({ children }) => {
     });
   }, [reload]);
 
+  const [loadedItems, setLoadedItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/allcrafts")
+      .then((res) => res.json())
+      .then((data) => setLoadedItems(data));
+  }, []);
+
   const authInfo = {
     user,
     createUser,
@@ -73,6 +80,8 @@ const AuthProvider = ({ children }) => {
     setReload,
     theme,
     setTheme,
+    loadedItems,
+    setLoadedItems,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

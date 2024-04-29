@@ -1,6 +1,10 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddCraft = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
   const subCategoryRef = useRef();
   const customizationRef = useRef();
   const stockRef = useRef();
@@ -18,6 +22,7 @@ const AddCraft = () => {
     const userName = form.userName.value;
     const userEmail = form.userEmail.value;
     const photoURL = form.photoURL.value;
+    const filterMail = user?.email || userEmail;
 
     const craftItem = {
       itemName,
@@ -31,6 +36,7 @@ const AddCraft = () => {
       userName,
       userEmail,
       photoURL,
+      filterMail,
     };
     console.log(craftItem);
     fetch("http://localhost:5000/allcrafts", {
@@ -43,10 +49,13 @@ const AddCraft = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success("data added successfully");
+        form.reset();
       });
   };
   return (
     <div className="p-24">
+      <Toaster></Toaster>
       <h1 className="text-3xl font-extrabold text-center mb-8">Add a craft </h1>
       <form onSubmit={handleAddItem}>
         {/* single row */}
@@ -73,11 +82,9 @@ const AddCraft = () => {
               ref={subCategoryRef}
               className="select w-full  input-bordered"
             >
-              <option disabled selected>
-                Landscape Painting
-              </option>
+              <option selected>Landscape Painting</option>
               <option>Portrait Drawing</option>
-              <option>Portrait Drawing</option>
+              <option>Watercolor Painting</option>
               <option>Oil Painting</option>
               <option>Charcoal Sketching</option>
               <option>Cartoon Drawing</option>
@@ -132,9 +139,7 @@ const AddCraft = () => {
               ref={customizationRef}
               className="select w-full  input-bordered"
             >
-              <option disabled selected>
-                yes
-              </option>
+              <option selected>yes</option>
               <option>no</option>
             </select>
           </div>
@@ -160,9 +165,7 @@ const AddCraft = () => {
               <span className="label-text">Stock Status</span>
             </div>
             <select ref={stockRef} className="select w-full  input-bordered">
-              <option disabled selected>
-                In stock
-              </option>
+              <option selected>In stock</option>
               <option>Made to order</option>
               <option>Out of stock</option>
             </select>
@@ -217,8 +220,8 @@ const AddCraft = () => {
         </div>
         <input
           type="submit"
-          value="ADD COFFEE"
-          className="btn mt-4 btn-block"
+          value="ADD CRAFT"
+          className="btn btn-primary mt-4 btn-block"
         />
       </form>
     </div>
