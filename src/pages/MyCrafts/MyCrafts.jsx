@@ -6,7 +6,9 @@ const MyCrafts = () => {
   const filterMail = user?.email;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mycrafts/${filterMail}`)
+    fetch(
+      `https://10-painting-server-btwfjmcxw-sakib928s-projects.vercel.app/mycrafts/${filterMail}`
+    )
       .then((res) => res.json())
       .then((data) => console.log(data));
   });

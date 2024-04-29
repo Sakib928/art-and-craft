@@ -1,11 +1,9 @@
-import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AllCrafts = () => {
-  useEffect(() => {
-    fetch("http://localhost:5000/allcrafts")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+  const { loadedItems } = useContext(AuthContext);
+  console.log(loadedItems);
   return (
     <div>
       <h1>Allcrafts</h1>

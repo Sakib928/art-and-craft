@@ -39,13 +39,16 @@ const AddCraft = () => {
       filterMail,
     };
     console.log(craftItem);
-    fetch("http://localhost:5000/allcrafts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(craftItem),
-    })
+    fetch(
+      "https://10-painting-server-btwfjmcxw-sakib928s-projects.vercel.app/mycrafts",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(craftItem),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
