@@ -1,4 +1,3 @@
-import { FaStar } from "react-icons/fa";
 const ItemCard = ({ item }) => {
   const { photoURL, itemName, currentStock, price, rating } = item;
   return (
