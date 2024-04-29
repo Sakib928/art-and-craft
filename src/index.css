@@ -12,3 +12,8 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
 }
+
+.category1 {
+    background-image: url('../../assets/images/mountain_canvas.jpg');
+    font-weight: 800;
+}
