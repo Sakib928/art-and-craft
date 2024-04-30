@@ -1,8 +1,14 @@
-# React + Vite
+# Welcome to Scribble
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This a art and craft website.
 
-Currently, two official plugins are available:
+Category : Painting and Drawing
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live link : https://art-and-craft-79543.web.app
+
+# Website Features
+- Firebase user authenticatino
+- Users can add their art and crafts
+- Users can view their art and crafts
+- Server integration with express js and mongodb
+- Private routes for protected information
