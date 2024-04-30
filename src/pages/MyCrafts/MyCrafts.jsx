@@ -47,6 +47,9 @@ const MyCrafts = () => {
                 text: "Your item has been deleted.",
                 icon: "success",
               });
+              const remaining = showCraft.filter((item) => item._id !== _id);
+              setShowCraft(remaining);
+              setMyCraft(remaining);
             }
           });
       }

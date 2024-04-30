@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AllCrafts = () => {
   const { loadedItems } = useContext(AuthContext);
   console.log(loadedItems);
+  const navigate = useNavigate();
+  const handleViewDetails = (id) => {
+    navigate(`/details/${id}`);
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -41,7 +46,12 @@ const AllCrafts = () => {
                   <td>{subCategory}</td>
                   <td>{price}</td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
+                    <button
+                      onClick={() => handleViewDetails(item._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      details
+                    </button>
                   </th>
                 </tr>
               );

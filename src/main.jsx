@@ -14,11 +14,13 @@ import PrivateRoute from "./privateRoute/PrivateRoute";
 import UpdatePage from "./pages/UpdatePage/UpdatePage";
 import ItemDetails from "./pages/ItemDetails/ItemDetails";
 import SubCategoryDetails from "./pages/SubCategoryDetails/SubCategoryDetails";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
