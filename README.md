@@ -1,6 +1,6 @@
 # Welcome to Scribble
 
-This a art and craft website.
+This is an art and craft website.
 
 Category : Painting and Drawing
 
