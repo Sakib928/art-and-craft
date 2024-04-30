@@ -4,12 +4,13 @@ import { FaPenToSquare } from "react-icons/fa6";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { IoIosArrowDropdown } from "react-icons/io";
 const MyCrafts = () => {
   const { user } = useContext(AuthContext);
   const filterMail = user?.email;
 
   const [mycraft, setMyCraft] = useState([]);
+  const [showCraft, setShowCraft] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,8 +19,9 @@ const MyCrafts = () => {
       .then((data) => {
         // console.log(data);
         setMyCraft(data);
+        setShowCraft(data);
       });
-  });
+  }, [filterMail]);
 
   const handleDelete = (_id) => {
     console.log(_id);
@@ -50,9 +52,44 @@ const MyCrafts = () => {
       }
     });
   };
+  const handleAll = () => {
+    setMyCraft(showCraft);
+    console.log(mycraft);
+  };
+
+  const handleCustomizable = () => {
+    const newShow = showCraft.filter((item) => item.customization === "yes");
+    console.log(newShow);
+    setMyCraft(newShow);
+  };
+
+  const handleNonCustomizable = () => {
+    const newShow = showCraft.filter((item) => item.customization === "no");
+    console.log(newShow);
+    setMyCraft(newShow);
+  };
 
   return (
     <div>
+      <div className="dropdown mb-24 flex justify-center">
+        <div tabIndex={0} role="button" className="btn m-1">
+          Sort <IoIosArrowDropdown />
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li onClick={handleAll}>
+            <a>All</a>
+          </li>
+          <li onClick={handleCustomizable}>
+            <a>Customizable</a>
+          </li>
+          <li onClick={handleNonCustomizable}>
+            <a>Non-Customizable</a>
+          </li>
+        </ul>
+      </div>
       {mycraft.map((item) => {
         const {
           photoURL,

@@ -9,7 +9,7 @@ const ItemDetails = () => {
     price,
     rating,
     shortDescription,
-    processingTime,
+    prcessingTime,
     customization,
     currentStock,
   } = item;
@@ -21,12 +21,12 @@ const ItemDetails = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{itemName}</h2>
-          <p className="font-bold">{subCategory}</p>
+          <p className="font-bold text-sm">{subCategory}</p>
           <p className="max-w-sm">{shortDescription}</p>
           <div>
             <p>Price : {price}</p>
             <p>Rating : {rating}</p>
-            <p>Processing Time : {processingTime}</p>
+            <p>Processing Time : {prcessingTime}</p>
             <p>Customization : {customization}</p>
             <p>Current Stock : {currentStock}</p>
           </div>
