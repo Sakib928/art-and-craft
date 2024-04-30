@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 const CraftItems = () => {
   const { loadedItems } = useContext(AuthContext);
   const showItem = loadedItems.slice(0, 6);
-  console.log(showItem);
+  // console.log(showItem);
   return (
     <div>
       <h1

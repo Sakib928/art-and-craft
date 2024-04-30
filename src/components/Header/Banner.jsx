@@ -1,8 +1,10 @@
 import Lottie from "lottie-react";
 import animationData from "../../../src/assets/images/artist.json";
 import { Fade, Zoom } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-[550px] bg-blue-700 flex flex-col md:flex-row justify-between items-center">
       <div>
@@ -19,6 +21,12 @@ const Banner = () => {
             world with joy
           </p>
         </Fade>
+        <button
+          onClick={() => navigate("/all-crafts")}
+          className="mt-4 btn btn-outline text-white"
+        >
+          View All Crafts
+        </button>
       </div>
       <div>
         <Lottie

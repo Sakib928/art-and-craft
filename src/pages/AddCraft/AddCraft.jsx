@@ -1,10 +1,11 @@
 import { useContext, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const AddCraft = () => {
   const { user } = useContext(AuthContext);
-  console.log(user.email);
+  // console.log(user.email);
   const subCategoryRef = useRef();
   const customizationRef = useRef();
   const stockRef = useRef();
@@ -38,193 +39,203 @@ const AddCraft = () => {
       photoURL,
       filterMail,
     };
-    console.log(craftItem);
-    fetch("http://localhost:5000/allcrafts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(craftItem),
-    })
+    // console.log(craftItem);
+    fetch(
+      "https://10-painting-server-7d9x24lfq-sakib928s-projects.vercel.app/allcrafts",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(craftItem),
+      }
+    )
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        // console.log(data);
         toast.success("data added successfully");
         form.reset();
       });
   };
   return (
-    <div className="p-24">
-      <Toaster></Toaster>
-      <h1 className="text-3xl font-extrabold text-center mb-8">Add a craft </h1>
-      <form onSubmit={handleAddItem}>
-        {/* single row */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
-              <div className="label">
-                <span className="label-text">Item Name</span>
-              </div>
-              <input
-                name="itemName"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-          <div className="form-control md:w-1/2">
-            <div className="label">
-              <span className="label-text">Select Sub category</span>
+    <HelmetProvider>
+      <Helmet>
+        <title>Add Craft</title>
+      </Helmet>
+      <div className="p-24">
+        <Toaster></Toaster>
+        <h1 className="text-3xl font-extrabold text-center mb-8">
+          Add a craft{" "}
+        </h1>
+        <form onSubmit={handleAddItem}>
+          {/* single row */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Item Name</span>
+                </div>
+                <input
+                  name="itemName"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
             </div>
-            <select
-              ref={subCategoryRef}
-              className="select w-full  input-bordered"
-            >
-              <option selected>Landscape Painting</option>
-              <option>Portrait Drawing</option>
-              <option>Watercolor Painting</option>
-              <option>Oil Painting</option>
-              <option>Charcoal Sketching</option>
-              <option>Cartoon Drawing</option>
-            </select>
+            <div className="form-control md:w-1/2">
+              <div className="label">
+                <span className="label-text">Select Sub category</span>
+              </div>
+              <select
+                ref={subCategoryRef}
+                className="select w-full  input-bordered"
+              >
+                <option selected>Landscape Painting</option>
+                <option>Portrait Drawing</option>
+                <option>Watercolor Painting</option>
+                <option>Oil Painting</option>
+                <option>Charcoal Sketching</option>
+                <option>Cartoon Drawing</option>
+              </select>
+            </div>
           </div>
-        </div>
-        {/* single row */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <textarea
-            required
-            name="shortDescription"
-            className="textarea textarea-ghost w-full md:w-1/2 border input-bordered"
-            placeholder="Short Description"
-          ></textarea>
+          {/* single row */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <textarea
+              required
+              name="shortDescription"
+              className="textarea textarea-ghost w-full md:w-1/2 border input-bordered"
+              placeholder="Short Description"
+            ></textarea>
 
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
-              <div className="label">
-                <span className="label-text">Price</span>
-              </div>
-              <input
-                name="price"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-        </div>
-        {/* single row */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
-              <div className="label">
-                <span className="label-text">Rating</span>
-              </div>
-              <input
-                name="rating"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-          <div className="form-control md:w-1/2">
-            <div className="label">
-              <span className="label-text">Customization</span>
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Price</span>
+                </div>
+                <input
+                  name="price"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
             </div>
-            <select
-              ref={customizationRef}
-              className="select w-full  input-bordered"
-            >
-              <option selected>yes</option>
-              <option>no</option>
-            </select>
           </div>
-        </div>
-        {/* single row */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
-              <div className="label">
-                <span className="label-text">Processing Time</span>
-              </div>
-              <input
-                name="prcessingTime"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-          <div className="form-control md:w-1/2">
-            <div className="label">
-              <span className="label-text">Stock Status</span>
+          {/* single row */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Rating</span>
+                </div>
+                <input
+                  name="rating"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
             </div>
-            <select ref={stockRef} className="select w-full  input-bordered">
-              <option selected>In stock</option>
-              <option>Made to order</option>
-              <option>Out of stock</option>
-            </select>
-          </div>
-        </div>
-        {/* single row */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
+            <div className="form-control md:w-1/2">
               <div className="label">
-                <span className="label-text">Your Name</span>
+                <span className="label-text">Customization</span>
               </div>
-              <input
-                name="userName"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
+              <select
+                ref={customizationRef}
+                className="select w-full  input-bordered"
+              >
+                <option selected>yes</option>
+                <option>no</option>
+              </select>
+            </div>
           </div>
-          <div className="form-control md:w-1/2 ">
-            <label className="form-control w-full ">
+          {/* single row */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Processing Time</span>
+                </div>
+                <input
+                  name="prcessingTime"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-control md:w-1/2">
               <div className="label">
-                <span className="label-text">Your Email</span>
+                <span className="label-text">Stock Status</span>
               </div>
-              <input
-                name="userEmail"
-                type="email"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
+              <select ref={stockRef} className="select w-full  input-bordered">
+                <option selected>In stock</option>
+                <option>Made to order</option>
+                <option>Out of stock</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="form-control w-full">
-          <div className="form-control w-full ">
-            <label className="form-control w-full ">
-              <div className="label">
-                <span className="label-text">Product Image</span>
-              </div>
-              <input
-                name="photoURL"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
+          {/* single row */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Your Name</span>
+                </div>
+                <input
+                  name="userName"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-control md:w-1/2 ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Your Email</span>
+                </div>
+                <input
+                  name="userEmail"
+                  type="email"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
           </div>
-        </div>
-        <input
-          type="submit"
-          value="ADD CRAFT"
-          className="btn btn-primary mt-4 btn-block"
-        />
-      </form>
-    </div>
+          <div className="form-control w-full">
+            <div className="form-control w-full ">
+              <label className="form-control w-full ">
+                <div className="label">
+                  <span className="label-text">Product Image</span>
+                </div>
+                <input
+                  name="photoURL"
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
+          </div>
+          <input
+            type="submit"
+            value="ADD CRAFT"
+            className="btn btn-primary mt-4 btn-block"
+          />
+        </form>
+      </div>
+    </HelmetProvider>
   );
 };
 

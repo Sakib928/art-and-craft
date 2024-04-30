@@ -10,7 +10,7 @@ const Categories = () => {
   const handleCategory = (e) => {
     let address = e.target.innerText;
     address = address.replace(" ", "_");
-    console.log(address);
+    // console.log(address);
     navigate(`/crafts/${address}`);
   };
   return (

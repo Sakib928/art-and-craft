@@ -70,7 +70,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/details/${params._id}`),
+          fetch(
+            `https://10-painting-server-7d9x24lfq-sakib928s-projects.vercel.app/details/${params._id}`
+          ),
       },
       {
         path: "/crafts/:subCategory",
