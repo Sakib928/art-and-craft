@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { BiSolidHide } from "react-icons/bi";
+import { FaEye } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, profileUpdate, reload, setReload } =
@@ -35,6 +37,13 @@ const Register = () => {
         });
     }
   };
+
+  const [passState, setPassState] = useState(false);
+
+  const handleShowPass = () => {
+    setPassState(!passState);
+  };
+
   return (
     <div>
       <Toaster />
@@ -80,16 +89,26 @@ const Register = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
+                <label className="label ">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
+                <div className="flex place-items-center w-full">
+                  <input
+                    type={passState ? "text" : "password"}
+                    placeholder="password"
+                    name="password"
+                    className="input input-bordered w-full"
+                    required
+                  />
+
+                  <span onClick={handleShowPass}>
+                    {passState ? (
+                      <BiSolidHide className="relative right-6 text-lg" />
+                    ) : (
+                      <FaEye className="relative right-6 text-lg" />
+                    )}
+                  </span>
+                </div>
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">

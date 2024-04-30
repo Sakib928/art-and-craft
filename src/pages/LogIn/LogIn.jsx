@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { BiSolidHide } from "react-icons/bi";
 const LogIn = () => {
   const { userLogin, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,6 +21,12 @@ const LogIn = () => {
       .catch((err) => {
         toast.error(err.message);
       });
+  };
+
+  const [passState, setPassState] = useState(false);
+
+  const handleShowPass = () => {
+    setPassState(!passState);
   };
 
   const handleGoogleLogin = () => {
@@ -65,15 +72,25 @@ const LogIn = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">Password </span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  name="password"
-                  className="input input-bordered"
-                  required
-                />
+                <div className="flex place-items-center">
+                  <input
+                    type={passState ? "text" : "password"}
+                    placeholder="password"
+                    name="password"
+                    className="input input-bordered"
+                    required
+                  />
+
+                  <span onClick={handleShowPass}>
+                    {passState ? (
+                      <BiSolidHide className="relative right-6 text-lg" />
+                    ) : (
+                      <FaEye className="relative right-6 text-lg" />
+                    )}
+                  </span>
+                </div>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
