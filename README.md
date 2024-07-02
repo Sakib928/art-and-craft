@@ -12,3 +12,14 @@ Live link : https://art-and-craft-79543.web.app
 - Users can view their art and crafts
 - Server integration with express js and mongodb
 - Private routes for protected information
+
+# Technologies Used : 
+## FrontEnd : 
+- html
+- css
+- javascript
+- react
+## Backend :
+- node.js
+- express.js
+- mongodb
