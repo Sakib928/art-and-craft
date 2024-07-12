@@ -23,7 +23,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat1})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}
@@ -36,7 +36,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat2})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}
@@ -49,7 +49,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat3})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}
@@ -62,7 +62,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat4})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}
@@ -75,7 +75,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat5})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}
@@ -88,7 +88,7 @@ const Categories = () => {
           style={{
             backgroundImage: `url(${cat6})`,
           }}
-          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center `}
+          className={`h-80 w-96 hover:bg-black/65 bg-blend-darken flex place-items-center justify-center bg-cover `}
         >
           <h1
             onClick={handleCategory}

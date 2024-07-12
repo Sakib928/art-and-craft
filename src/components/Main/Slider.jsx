@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 
 const Slider = () => {
   return (
-    <div className="h-[350px] w-full my-24">
+    <div className="h-[350px] object-contain w-full my-24">
       <Swiper
         slidesPerView={3}
         loop={true}
@@ -30,22 +30,22 @@ const Slider = () => {
         className="mySwiper"
       >
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat1} alt="" />
+          <img className="h-[350px] object-contain" src={cat1} alt="" />
         </SwiperSlide>
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat2} alt="" />
+          <img className="h-[350px] object-contain" src={cat2} alt="" />
         </SwiperSlide>
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat3} alt="" />
+          <img className="h-[350px] object-contain" src={cat3} alt="" />
         </SwiperSlide>
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat4} alt="" />
+          <img className="h-[350px] object-contain" src={cat4} alt="" />
         </SwiperSlide>
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat5} alt="" />
+          <img className="h-[350px] object-contain" src={cat5} alt="" />
         </SwiperSlide>
         <SwiperSlide className="text-center">
-          <img className="h-[350px]" src={cat6} alt="" />
+          <img className="h-[350px] object-contain" src={cat6} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>

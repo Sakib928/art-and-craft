@@ -1,19 +1,19 @@
 import Lottie from "lottie-react";
 import animationData from "../../../src/assets/images/artist.json";
-import { Fade, Zoom } from "react-awesome-reveal";
+import { Fade } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const navigate = useNavigate();
   return (
     <div className="h-[550px] bg-blue-700 flex flex-col md:flex-row justify-between items-center">
-      <div>
-        <Zoom>
-          <h1 className="text-6xl text-white font-extrabold">
+      <div className="p-4">
+        <Fade>
+          <h1 className="text-4xl lg:text-6xl text-white font-extrabold">
             {" "}
             Welcome to Scribble
           </h1>
-        </Zoom>
+        </Fade>
         <Fade>
           <p className="font-medium">
             {" "}
