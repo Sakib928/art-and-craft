@@ -4,7 +4,7 @@ This is an art and craft website.
 
 Category : Painting and Drawing
 
-Live link : https://art-and-craft-79543.web.app
+Live link : https://scribble-art-and-craft.netlify.app
 
 # Website Features
 - Firebase user authentication
