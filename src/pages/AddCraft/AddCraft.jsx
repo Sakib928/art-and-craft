@@ -91,8 +91,9 @@ const AddCraft = () => {
               <select
                 ref={subCategoryRef}
                 className="select w-full  input-bordered"
+                defaultValue={"Landscape Painting"}
               >
-                <option selected>Landscape Painting</option>
+                <option>Landscape Painting</option>
                 <option>Portrait Drawing</option>
                 <option>Watercolor Painting</option>
                 <option>Oil Painting</option>
@@ -147,9 +148,10 @@ const AddCraft = () => {
               </div>
               <select
                 ref={customizationRef}
+                defaultValue={"yes"}
                 className="select w-full  input-bordered"
               >
-                <option selected>yes</option>
+                <option>yes</option>
                 <option>no</option>
               </select>
             </div>
@@ -174,8 +176,12 @@ const AddCraft = () => {
               <div className="label">
                 <span className="label-text">Stock Status</span>
               </div>
-              <select ref={stockRef} className="select w-full  input-bordered">
-                <option selected>In stock</option>
+              <select
+                defaultValue={"In stock"}
+                ref={stockRef}
+                className="select w-full  input-bordered"
+              >
+                <option>In stock</option>
                 <option>Made to order</option>
                 <option>Out of stock</option>
               </select>
