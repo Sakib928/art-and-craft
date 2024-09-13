@@ -23,3 +23,11 @@ Live link : https://scribble-art-and-craft.netlify.app
 - node.js
 - express.js
 - mongodb
+
+
+## How to run locally :
+
+- clone the project
+- put npm i command in the terminal
+- create a firebase app and connect it with the project
+- put npm run dev command and you are good to go
